@@ -10,16 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: - Outlets
+    @IBOutlet var scheduleImageView: UIImageView!
+    
+    
+    
+    // MARK: - Logic
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let todayDate = Date()
+        let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+        let myComponents = myCalendar.components(.weekday, from: todayDate)
+        let weekDay = myComponents.weekday!
+        if weekDay == 1 || weekDay == 7 {
+            scheduleImageView.image = UIImage(named: "noSchool")
+        } else {
+            scheduleImageView.image = UIImage(named: "\(weekDay)")
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
-
 
 }
 
