@@ -22,8 +22,8 @@ class ViewController: UIViewController {
         let todayDate = Date()
         let myCalendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
         let myComponents = myCalendar.components(.weekday, from: todayDate)
-        let weekDay = myComponents.weekday!
-        if weekDay == 1 || weekDay == 7 {
+        let weekDay = myComponents.weekday! - 1
+        if weekDay == 0 || weekDay == 6 {
             scheduleImageView.image = UIImage(named: "noSchool")
         } else {
             scheduleImageView.image = UIImage(named: "\(weekDay)")
